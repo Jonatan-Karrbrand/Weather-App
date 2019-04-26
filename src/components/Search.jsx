@@ -17,7 +17,7 @@ class Search extends Component {
     render() {
         return (
             <div className="search-weather">
-                <form className="max-width-600 mx-auto">
+                <form className="max-width-600 mx-auto" onSubmit={ this.search }>
                     <div className="form-group">
                         <label for="exampleInputEmail1">Sök</label>
                         <input type="text" className="form-control" placeholder="Sök"
@@ -26,7 +26,7 @@ class Search extends Component {
                             }}
                         />
                     </div>
-                    <button type="submit" className="btn btn-primary float-right" onClick={ () => this.search() }>Submit</button>
+                    <button className="btn btn-primary float-right">Submit</button>
                     <h2>{this.state.location}</h2>
                 </form>
                 <DisplayWeather inSweden={this.state.inSweden}/>
@@ -34,7 +34,9 @@ class Search extends Component {
         )
     }
 
-    search() {
+    search = e => {
+        e.preventDefault();
+
         fetch(`http://dataservice.accuweather.com/locations/v1/cities/search?apikey=${this.state.apiKey}&q=${this.state.location}&details=true`)
         .then( response => response.json() )
         .then( result => {
