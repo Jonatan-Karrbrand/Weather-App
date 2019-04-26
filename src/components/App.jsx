@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
 import '../style/components/app.min.css';
+
 // Components
 import Header from './Header';
+import Search from './Search';
 
 class App extends Component {
 
@@ -18,7 +20,7 @@ class App extends Component {
                 <div className="app-wrapper">
                     <div className="container">
                         <Header></Header>
-                        <h1>hello</h1>
+                        <Search></Search>
                     </div>
                 </div>
             </React.Fragment>
