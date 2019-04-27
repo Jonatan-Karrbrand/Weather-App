@@ -26,8 +26,8 @@ class Search extends Component {
                             }}
                         />
                     </div>
-                    <button className="btn btn-primary float-right">Submit</button>
-                    <h2>{this.state.location}</h2>
+                    <button className="btn btn-primary">Submit</button>
+
                 </form>
                 <DisplayWeather inSweden={this.state.inSweden}/>
             </div>

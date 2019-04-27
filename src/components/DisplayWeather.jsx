@@ -17,11 +17,34 @@ class DisplayWeather extends Component {
         console.log(this.props.inSweden);
         return (
             <div className="display-weather">
+                <p className="number-of-search-results text-right">{ this.props.inSweden.length } sökresultat</p>
                 <div className="wrapper">
-
+                    { this.props.inSweden.map((location, key) => {
+                        return (
+                            <div className="location-container" key={key} onClick={ () => this.getWeather(location.Key) }>
+                                <h4>{ location.LocalizedName }</h4>
+                                <h4>{ location.AdministrativeArea.LocalizedName }</h4>
+                                <h4>{ location.Country.LocalizedName }</h4>
+                            </div>
+                        )
+                    }) }
                 </div>
             </div>
         )
+    }
+
+    getWeather(key) {
+        console.log('nyckel', key)
+        fetch(`http://dataservice.accuweather.com/forecasts/v1/daily/10day/${key}?apikey=${this.state.apiKey}` , {
+          headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json"
+          }
+        })
+        .then( response => response.json() )
+        .then( result => {
+            console.log(result);
+        })
     }
 }
 
