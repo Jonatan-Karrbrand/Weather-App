@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import '../style/components/app.min.css';
+import '../style/components/app.scss';
 
 class DisplayWeather extends Component {
 
@@ -35,16 +35,14 @@ class DisplayWeather extends Component {
 
     getWeather(key) {
         console.log('nyckel', key)
-        fetch(`http://dataservice.accuweather.com/forecasts/v1/daily/10day/${key}?apikey=${this.state.apiKey}` , {
-          headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json"
-          }
-        })
+        fetch(`http://dataservice.accuweather.com/forecasts/v1/daily/5day/${key}?apikey=${this.state.apiKey}&details=true&metric=true`)
         .then( response => response.json() )
         .then( result => {
             console.log(result);
         })
+        .catch(function(error) {
+            console.log(error);
+        });
     }
 }
 
