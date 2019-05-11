@@ -5,7 +5,7 @@
 
     label {
         position: absolute;
-        color: #a7a7a7;
+        color: #d4d4d4;
         pointer-events: none;
         transition: all 0.3s ease-out;
     }
@@ -13,6 +13,7 @@
     label.hover-label {
         transform: translateY(-30px);
         font-size: 0.7rem;
+        color: $details-blue;
     }
 
     input {

@@ -6,24 +6,26 @@ class DisplayWeather extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            location: '',
+            searchWord: '',
             apiKey: 'Pag00sFbYunSoXw8XR8V3QmfcOcDX38T',
             validResult: null,
-            inSweden: []
+            location: []
         }
     }
 
     render() {
         return (
             <div className="display-weather">
-                <p className="number-of-search-results text-right">{ this.props.inSweden.length } sökresultat</p>
+                <p className="number-of-search-results text-right">{ this.props.location.length } sökresultat</p>
                 <div className="wrapper">
-                    { this.props.inSweden.map((location, key) => {
+                    { this.props.location.map((searchWord, key) => {
                         return (
-                            <div className="location-container" key={key} onClick={ () => this.getWeather(location.Key) }>
-                                <h4>{ location.LocalizedName }</h4>
-                                <h4>{ location.AdministrativeArea.LocalizedName }</h4>
-                                <h4>{ location.Country.LocalizedName }</h4>
+                            <div className="location-container">
+                                <div className="location-content" key={key} onClick={ () => this.getWeather(searchWord.Key) }>
+                                    <h4>{ searchWord.LocalizedName }</h4>
+                                    <h4>{ searchWord.AdministrativeArea.LocalizedName }</h4>
+                                    <h4>{ searchWord.Country.LocalizedName }</h4>
+                                </div>
                             </div>
                         )
                     }) }

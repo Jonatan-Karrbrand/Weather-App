@@ -16,7 +16,7 @@ class Header extends Component {
                 <nav>
                     <h3>Weather App</h3>
 
-                    <div onClick={() => this.toggleMenuClass()} className={this.state.menuOpen ? 'open' : ' '} id="nav-icon1">
+                    <div onClick={() => this.toggleMenuClass()} className={this.state.menuOpen && 'open'} id="nav-icon1">
                         <span></span>
                         <span></span>
                         <span></span>
