@@ -14,7 +14,6 @@ class DisplayWeather extends Component {
     }
 
     render() {
-        console.log(this.props.inSweden);
         return (
             <div className="display-weather">
                 <p className="number-of-search-results text-right">{ this.props.inSweden.length } sökresultat</p>

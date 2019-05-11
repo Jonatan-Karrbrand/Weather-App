@@ -1,0 +1,40 @@
+.search-container {
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+
+    label {
+        position: absolute;
+        color: #a7a7a7;
+        pointer-events: none;
+        transition: all 0.3s ease-out;
+    }
+
+    label.hover-label {
+        transform: translateY(-30px);
+        font-size: 0.7rem;
+    }
+
+    input {
+        background: none;
+        border: none;
+        color: white;
+        flex-grow: 1;
+        border-bottom: 1px solid white;
+        margin-right: 2rem;
+    }
+
+    input:focus {
+        outline: none;
+    }
+
+    img {
+        width: 22px;
+        cursor: pointer;
+    }
+
+    svg {
+        height: 35px;
+        cursor: pointer;
+    }
+}

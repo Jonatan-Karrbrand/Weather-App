@@ -6,7 +6,7 @@ class Header extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            hej: 'hej'
+            menuOpen: false
         }
     }
 
@@ -15,15 +15,23 @@ class Header extends Component {
             <React.Fragment>
                 <nav>
                     <h3>Weather App</h3>
-                    <ul>
-                        <li><a href="#">Vädret</a></li>
-                        <li><a href="#">Klimat</a></li>
-                        <li><a href="#">Data</a></li>
-                        <li><a href="#">Kontakt</a></li>
-                    </ul>
+
+                    <div onClick={() => this.toggleMenuClass()} className={this.state.menuOpen ? 'open' : ' '} id="nav-icon1">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
                 </nav>
             </React.Fragment>
         )
+    }
+
+    toggleMenuClass() {
+        if ( this.state.menuOpen === false ) {
+            this.setState({ menuOpen: true })
+        } else {
+            this.setState({ menuOpen: false })
+        }
     }
 }
 
