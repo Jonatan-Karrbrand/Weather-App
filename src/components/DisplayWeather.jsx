@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import '../style/components/app.scss';
+import { ReactComponent as Arrow } from '../assets/arrow-circle-right-light.svg';
 
 class DisplayWeather extends Component {
 
@@ -22,9 +23,12 @@ class DisplayWeather extends Component {
                         return (
                             <div className="location-container">
                                 <div className="location-content" key={key} onClick={ () => this.getWeather(searchWord.Key) }>
-                                    <h4>{ searchWord.LocalizedName }</h4>
-                                    <h4>{ searchWord.AdministrativeArea.LocalizedName }</h4>
-                                    <h4>{ searchWord.Country.LocalizedName }</h4>
+                                    <div className="d-flex">
+                                        <h4>{ searchWord.LocalizedName }</h4>
+                                        <h4>{ searchWord.AdministrativeArea.LocalizedName }</h4>
+                                        <h4>{ searchWord.Country.LocalizedName }</h4>
+                                    </div>
+                                    <Arrow className="arrow-right"/>
                                 </div>
                             </div>
                         )

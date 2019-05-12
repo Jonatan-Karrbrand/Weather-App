@@ -11,11 +11,12 @@ body {
 
 .app-wrapper {
     background-image: linear-gradient($bg-color-1, $bg-color-2);
-    height: 100vh;
+    min-height: 100vh;
+    height: 100%;
 }
 
 .component-wrapper {
-    padding: $component-spacing; 
+    padding: $component-spacing;
 }
 
 nav {
