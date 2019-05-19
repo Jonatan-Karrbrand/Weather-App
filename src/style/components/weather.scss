@@ -1,0 +1,23 @@
+.weather-component {
+    .weather-container {
+        display: flex;
+        border: 2px solid;
+        border-radius: 20px;
+        padding: 1.6rem;
+        justify-content: space-around;
+        align-items: center;
+        margin-bottom: 1.5rem;
+
+        h4, h5 {
+            margin-bottom: 0;
+        }
+
+        .temperature-container {
+            display: flex;
+
+            h5:first-child {
+                margin-right: 1rem;
+            }
+        }
+    }
+}

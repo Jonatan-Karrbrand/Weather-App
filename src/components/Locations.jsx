@@ -34,18 +34,17 @@ class DisplayWeather extends Component {
                                 </div>
                             </div>
                         )
-                    }) }
+                    })}
                 </div>
             </div>
         )
     }
 
     getWeather(key) {
-        console.log('nyckel', key)
         fetch(`http://dataservice.accuweather.com/forecasts/v1/daily/5day/${key}?apikey=${this.state.apiKey}&details=true&metric=true`)
         .then( response => response.json() )
         .then( result => {
-            console.log(result);
+            this.props.callbackFromParent(result);
         })
         .catch(function(error) {
             console.log(error);
