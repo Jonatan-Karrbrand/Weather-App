@@ -16,7 +16,7 @@ class DisplayWeather extends Component {
 
     render() {
         return (
-            <div className="display-weather">
+            <div className="locations-weather">
                 <p className="number-of-search-results text-right">{ this.props.location.length } sökresultat</p>
                 <div className="wrapper">
                     { this.props.location.map((searchWord, key) => {
@@ -25,7 +25,9 @@ class DisplayWeather extends Component {
                                 <div className="location-content" key={key} onClick={ () => this.getWeather(searchWord.Key) }>
                                     <div className="d-flex">
                                         <h4>{ searchWord.LocalizedName }</h4>
+                                        <h3>-</h3>
                                         <h4>{ searchWord.AdministrativeArea.LocalizedName }</h4>
+                                        <h3>-</h3>
                                         <h4>{ searchWord.Country.LocalizedName }</h4>
                                     </div>
                                     <Arrow className="arrow-right"/>

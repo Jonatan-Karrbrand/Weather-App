@@ -1,12 +1,16 @@
+// Colors
+$bg-color-1: #101033;
+$bg-color-2: #150226;
+$details-blue: #7d8ec5;
+
+$bg-color: white;
+$primary: white;
+$secondary: #2CD5CF;
+
+// Padding, spacing
+$component-spacing: 3rem 0;
+
 // Imports
 @import 'node_modules/bootstrap/scss/bootstrap.scss';
 @import './max-min-lengths.scss';
 @import '../elements/menu-button.scss';
-
-// Colors
-$bg-color-1: #21111E;
-$bg-color-2: #193058;
-$details-blue: #7d8ec5;
-
-// Padding, spacing
-$component-spacing: 3rem 0;

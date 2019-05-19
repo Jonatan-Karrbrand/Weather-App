@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import '../style/components/app.scss';
-import DisplayWeather from './DisplayWeather';
+import Locations from './Locations';
+import Weather from './Weather';
 import { ReactComponent as SearchIcon } from '../assets/search-location-light.svg';
 
 class Search extends Component {
@@ -37,7 +38,7 @@ class Search extends Component {
 
                     </form>
                 </div>
-                <DisplayWeather location={this.state.location}/>
+                <Locations location={ this.state.location }/>
             </div>
         )
     }

@@ -5,24 +5,27 @@
 
     label {
         position: absolute;
-        color: #d4d4d4;
+        color: $primary;
         pointer-events: none;
         transition: all 0.3s ease-out;
+        font-size: 1.2rem;
     }
 
     label.hover-label {
         transform: translateY(-30px);
-        font-size: 0.7rem;
-        color: $details-blue;
+        font-size: 0.8rem;
+        color: $primary;
+        opacity: 0.6;
     }
 
     input {
         background: none;
         border: none;
-        color: white;
+        color: $primary;
         flex-grow: 1;
-        border-bottom: 1px solid white;
+        border-bottom: 1px solid $primary;
         margin-right: 2rem;
+        font-size: 1.2rem;
     }
 
     input:focus {
@@ -37,5 +40,10 @@
     svg {
         height: 35px;
         cursor: pointer;
+        color: $secondary;
+    }
+
+    p {
+        color: $primary;
     }
 }

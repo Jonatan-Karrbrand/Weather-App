@@ -1,6 +1,6 @@
 // Display Weather Component
 
-.display-weather {
+.locations-weather {
     .wrapper {
         margin: 1.5rem 0;
         max-width: 800px;
@@ -10,11 +10,11 @@
             display: flex;
             margin-top: 1.5rem;
             padding: 1rem;
-            color: white;
+            color: $primary;
             justify-content: space-between;
             align-items: center;
             cursor: pointer;
-            border: 2px solid white;
+            border: 2px solid $primary;
             border-radius: 15px;
             transition: all 0.3s ease-in-out;
 
@@ -24,7 +24,11 @@
 
             h4 {
                 font-size: 400;
-                margin: 0 2rem;
+                margin: 0 1rem;
+            }
+
+            h3 {
+                margin-bottom: 0;
             }
 
             .arrow-right {
@@ -32,9 +36,13 @@
                 transition: all 0.3s ease-in-out;
 
                 &:hover {
-                    color: #2ede6e;
+                    color: $secondary;
                 }
             }
         }
+    }
+
+    p {
+        color: $primary;
     }
 }

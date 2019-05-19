@@ -1,16 +1,18 @@
-// Global css
+// Global, header css
 @import '../variables/options.scss';
-@import 'display-weather.scss';
+@import 'locations.scss';
 @import 'search.scss';
+@import 'weather.scss';
 
 body {
     margin: 0;
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Brandon grotesque', sans-serif;
     color: white;
 }
 
 .app-wrapper {
     background-image: linear-gradient($bg-color-1, $bg-color-2);
+    // background-color: $bg-color;
     min-height: 100vh;
     height: 100%;
 }
@@ -27,6 +29,7 @@ nav {
 
     h3 {
         margin-bottom: 0;
+        color: $primary;
     }
 
     ul {
@@ -38,10 +41,10 @@ nav {
             padding: 0 1rem;
 
             a {
-                color: white;
+                color: $primary;
 
                 &:hover {
-                    color: grey;
+                    color: $primary;
                 }
             }
         }
