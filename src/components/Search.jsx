@@ -19,10 +19,6 @@ class Search extends Component {
         }
     }
 
-    dataFromLocationsComponent  = ( data ) => {
-        this.setState({ weather: data });
-    }
-
     render() {
         return (
             <div>
@@ -52,6 +48,10 @@ class Search extends Component {
 
             </div>
         )
+    }
+
+    dataFromLocationsComponent  = ( data ) => {
+        this.setState({ weather: data });
     }
 
     toggleLabelClass() {

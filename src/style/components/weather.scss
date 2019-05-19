@@ -14,10 +14,22 @@
 
         .temperature-container {
             display: flex;
+            align-items: center;
 
-            h5:first-child {
-                margin-right: 1rem;
+            .temperature-seperator {
+                margin: 0 1rem;
+                font-size: 1.3rem;
+                font-weight: bold;
             }
+        }
+
+        .icon-big {
+            height: 40px;
+        }
+
+        .icon-small {
+            height: 25px;
+            margin-right: 1rem;
         }
     }
 }
