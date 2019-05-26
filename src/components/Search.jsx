@@ -15,7 +15,8 @@ class Search extends Component {
             location: [],
             hoverLabel: false,
             swedenOnly: false,
-            weather: null
+            weather: null,
+            locationKey: null
         }
     }
 
@@ -26,8 +27,8 @@ class Search extends Component {
                     <form className="max-width-600 mx-auto" onSubmit={ this.search }>
 
                         <div className="search-container">
-                            <label for="searchBar" className={ this.state.hoverLabel && 'hover-label' }>Sök efter stad</label>
-                            <input type="text" name="searchBar" autocomplete="off"
+                            <label htmlFor="searchBar" className={ this.state.hoverLabel && 'hover-label' }>Sök efter stad</label>
+                            <input type="text" name="searchBar" autoComplete="off"
                                 onChange={ event => {
                                     this.setState({ searchWord: event.target.value }, function () {
                                         this.toggleLabelClass();
@@ -41,7 +42,7 @@ class Search extends Component {
                 </div>
 
                 { this.state.weather ? (
-                    <Weather weather={ this.state.weather }/>
+                    <Weather weather={ this.state.weather } locationKey={ this.state.locationKey }/>
                 ) : (
                     <Locations location={ this.state.location } callbackFromParent={ this.dataFromLocationsComponent }/>
                 )}
@@ -50,8 +51,8 @@ class Search extends Component {
         )
     }
 
-    dataFromLocationsComponent  = ( data ) => {
-        this.setState({ weather: data });
+    dataFromLocationsComponent  = ( data , key ) => {
+        this.setState({ weather: data , locationKey: key});
     }
 
     toggleLabelClass() {

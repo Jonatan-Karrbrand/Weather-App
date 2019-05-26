@@ -1,12 +1,16 @@
 .weather-component {
-    .weather-container {
-        display: flex;
+    .weather-wrapper {
         border: 2px solid;
         border-radius: 20px;
         padding: 1.6rem;
+        margin-bottom: 1.5rem;
+        cursor: pointer;
+    }
+
+    .weather-container {
+        display: flex;
         justify-content: space-around;
         align-items: center;
-        margin-bottom: 1.5rem;
 
         h4, h5 {
             margin-bottom: 0;
@@ -30,6 +34,14 @@
         .icon-small {
             height: 25px;
             margin-right: 1rem;
+        }
+
+        .dayText {
+            font-weight: bold;
+        }
+
+        .dayNumbers {
+            font-size: 90%;
         }
     }
 }

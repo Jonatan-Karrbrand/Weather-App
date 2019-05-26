@@ -44,7 +44,7 @@ class DisplayWeather extends Component {
         fetch(`http://dataservice.accuweather.com/forecasts/v1/daily/5day/${key}?apikey=${this.state.apiKey}&details=true&metric=true`)
         .then( response => response.json() )
         .then( result => {
-            this.props.callbackFromParent(result);
+            this.props.callbackFromParent(result, key);
         })
         .catch(function(error) {
             console.log(error);
