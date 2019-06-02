@@ -8,7 +8,7 @@ class DisplayWeather extends Component {
         super(props);
         this.state = {
             searchWord: '',
-            apiKey: 'Pag00sFbYunSoXw8XR8V3QmfcOcDX38T',
+            apiKey: this.props.apiKey,
             validResult: null,
             location: []
         }
@@ -17,11 +17,11 @@ class DisplayWeather extends Component {
     render() {
         return (
             <div className="locations-weather">
-                <p className="number-of-search-results text-right">{ this.props.location.length } sökresultat</p>
+                <p className="number-of-search-results text-right">{ this.numberOfResults() }</p>
                 <div className="wrapper">
                     { this.props.location.map((searchWord, key) => {
                         return (
-                            <div className="location-container">
+                            <div className="location-container slide-in-top">
                                 <div className="location-content" key={key} onClick={ () => this.getWeather(searchWord.Key) }>
                                     <div className="d-flex">
                                         <h4>{ searchWord.LocalizedName }</h4>
@@ -40,11 +40,22 @@ class DisplayWeather extends Component {
         )
     }
 
+    numberOfResults() {
+        if ( this.props.noResult ) {
+            return 'Inga sökresultat';
+        } else if (this.props.location.length === 0) {
+            return '';
+        } else {
+            return `${this.props.location.length} sökresultat`;
+        }
+    }
+
     getWeather(key) {
         fetch(`http://dataservice.accuweather.com/forecasts/v1/daily/5day/${key}?apikey=${this.state.apiKey}&details=true&metric=true`)
         .then( response => response.json() )
         .then( result => {
-            this.props.callbackFromParent(result, key);
+            console.log('locations' , result.DailyForecasts[0].Day.Icon)
+            this.props.callbackFromParent(result, key, result.DailyForecasts[0].Day.Icon );
         })
         .catch(function(error) {
             console.log(error);

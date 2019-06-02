@@ -16,7 +16,9 @@ class Search extends Component {
             hoverLabel: false,
             swedenOnly: false,
             weather: null,
-            locationKey: null
+            locationKey: null,
+            background: false,
+            noResult: null
         }
     }
 
@@ -42,21 +44,22 @@ class Search extends Component {
                 </div>
 
                 { this.state.weather ? (
-                    <Weather weather={ this.state.weather } locationKey={ this.state.locationKey }/>
+                    <Weather apiKey={ this.state.apiKey } weather={ this.state.weather } locationKey={ this.state.locationKey } callbackFromParent={ this.dataFromWeatherComponent }/>
                 ) : (
-                    <Locations location={ this.state.location } callbackFromParent={ this.dataFromLocationsComponent }/>
+                    <Locations apiKey={ this.state.apiKey } noResult={ this.state.noResult } location={ this.state.location } callbackFromParent={ this.dataFromLocationsComponent }/>
                 )}
 
             </div>
         )
     }
 
-    dataFromLocationsComponent  = ( data , key ) => {
+    dataFromLocationsComponent  = ( data , key, icon ) => {
         this.setState({ weather: data , locationKey: key});
+        this.props.callbackFromApp( icon );
     }
 
     toggleLabelClass() {
-        if (this.state.searchWord === '') {
+        if ( this.state.searchWord === '' ) {
             this.setState({ hoverLabel: false })
         } else {
             this.setState({ hoverLabel: true })
@@ -65,15 +68,15 @@ class Search extends Component {
 
     search = e => {
         e.preventDefault();
+        this.setState({ location: [] });
 
         fetch(`http://dataservice.accuweather.com/locations/v1/cities/search?apikey=${this.state.apiKey}&q=${this.state.searchWord}&details=true`)
         .then( response => response.json() )
         .then( result => {
-
             if ( result.length === 0 ) {
-                console.log('Hitta inget');
+                this.setState({ noResult: true});
             } else {
-                this.setState({weather: null})
+                this.setState({ weather: null , noResult: false})
                 let array = [];
                 result.forEach( element => {
                     if ( this.state.swedenOnly ) {

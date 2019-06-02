@@ -5,7 +5,7 @@ $details-blue: #7d8ec5;
 
 $bg-color: white;
 $primary: white;
-$secondary: #2CD5CF;
+$secondary: #9bf9f5;
 
 // Padding, spacing
 $component-spacing: 3rem 0;
@@ -14,3 +14,4 @@ $component-spacing: 3rem 0;
 @import 'node_modules/bootstrap/scss/bootstrap.scss';
 @import './max-min-lengths.scss';
 @import '../elements/menu-button.scss';
+@import './animations.scss';

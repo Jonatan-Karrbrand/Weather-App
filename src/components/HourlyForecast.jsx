@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import '../style/components/app.scss';
 
-import { ReactComponent as HighTemp } from '../assets/icons/thermometer-three-quarters-light.svg';
 import { ReactComponent as MinTemp } from '../assets/icons/thermometer-one-quarters-light.svg';
 import { ReactComponent as Wind } from '../assets/icons/wind-light.svg';
 import { ReactComponent as Raindrops } from '../assets/icons/raindrops-light.svg';
@@ -33,7 +32,8 @@ class HourlyForecast extends Component {
     render() {
         return (
             <React.Fragment >
-                { this.props.forecast != null ? (
+                { this.props.forecast != null
+                    ? (
                     <div>
                         <div className="overlay" onClick={() => this.toggleDisplay()}></div>
                         <div className={"hourly-forecast-component " + ( !this.state.display && 'display-weather' )}>
@@ -43,19 +43,27 @@ class HourlyForecast extends Component {
                                 let hour = forecast.DateTime.substring(11,16);
                                 return (
                                     <div className="forecast-container" key={key}>
-                                        <h5>{hour}</h5>
-                                        {currentWeatherIcon}
-                                        <div className="temperature-container">
-                                            <MinTemp className="icon-small"/>
-                                            <h5>{forecast.Temperature.Value}°</h5>
+                                        <div className="hour-icon-column">
+                                            <h5>{hour}</h5>
+                                            {currentWeatherIcon}
                                         </div>
-                                        <div className="d-flex">
-                                            <Wind className="icon-small"/>
-                                            <h5>{forecast.Wind.Speed.Value} km/h</h5>
+                                        <div className="forecast-column">
+                                            <div className="temperature-container">
+                                                <MinTemp className="icon-small"/>
+                                                <h6>{forecast.Temperature.Value}°</h6>
+                                            </div>
                                         </div>
-                                        <div className="d-flex">
-                                            <Raindrops className="icon-small"/>
-                                            <h5>{forecast.Rain.Value} mm</h5>
+                                        <div className="wind-column">
+                                            <div className="d-flex">
+                                                <Wind className="icon-small"/>
+                                                <h6>{forecast.Wind.Speed.Value} km/h</h6>
+                                            </div>
+                                        </div>
+                                        <div className="forecast-column">
+                                            <div className="d-flex">
+                                                <Raindrops className="icon-small"/>
+                                                <h6>{forecast.Rain.Value} mm</h6>
+                                            </div>
                                         </div>
                                     </div>
                                 )

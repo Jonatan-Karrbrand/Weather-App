@@ -27,16 +27,17 @@ class Weather extends Component {
         super(props);
         this.state = {
             weather: this.props.weather,
-            apiKey: 'Pag00sFbYunSoXw8XR8V3QmfcOcDX38T',
+            apiKey: this.props.apiKey,
             forecastDay1: [],
             forecastDay2: [],
-            display: false
+            display: false,
+            expanded: false
         }
     }
 
     render() {
         return (
-            <div className="weather-component">
+            <div className="weather-component fade-in">
                 {  this.state.weather.DailyForecasts.map((weather, key) => {
                     var currentWeatherIcon = this.weatherIcon(weather.Day.Icon);
 
@@ -46,24 +47,32 @@ class Weather extends Component {
                     let month = weather.Date.substring(5,7);
 
                     return (
-                        <div className="weather-wrapper position-relative">
+                        <div className={"weather-wrapper position-relative " + (this.state.expanded && 'expanded')}>
                             <div className="weather-container" key={key}>
-                                <h4><span className="dayText">{dayToDisplay}</span> <span className="dayNumbers">{day}-{month}</span></h4>
-                                {currentWeatherIcon}
-                                <div className="temperature-container">
-                                    <HighTemp className="icon-small"/>
-                                    <h5>{weather.Temperature.Maximum.Value}°</h5>
-                                    <span className="temperature-seperator">-</span>
-                                    <MinTemp className="icon-small"/>
-                                    <h5>{weather.Temperature.Minimum.Value}°</h5>
+                                <div className="day-icon-column">
+                                    <h4><span className="dayText">{dayToDisplay}</span> <span className="dayNumbers">{day}-{month}</span></h4>
+                                    {currentWeatherIcon}
                                 </div>
-                                <div className="d-flex">
-                                    <Wind className="icon-small"/>
-                                    <h5>{weather.Day.Wind.Speed.Value} km/h</h5>
+                                <div className="temperature-column">
+                                    <div className="temperature-container">
+                                        <HighTemp className="icon-small"/>
+                                        <h5>{weather.Temperature.Maximum.Value}°</h5>
+                                        <span className="temperature-seperator">-</span>
+                                        <MinTemp className="icon-small"/>
+                                        <h5>{weather.Temperature.Minimum.Value}°</h5>
+                                    </div>
                                 </div>
-                                <div className="d-flex">
-                                    <Raindrops className="icon-small"/>
-                                    <h5>{weather.Day.Rain.Value} mm</h5>
+                                <div className="weather-column">
+                                    <div className="d-flex">
+                                        <Wind className="icon-small"/>
+                                        <h5>{weather.Day.Wind.Speed.Value} km/h</h5>
+                                    </div>
+                                </div>
+                                <div className="weather-column">
+                                    <div className="d-flex">
+                                        <Raindrops className="icon-small"/>
+                                        <h5>{weather.Day.Rain.Value} mm</h5>
+                                    </div>
                                 </div>
                             </div>
 
@@ -73,6 +82,14 @@ class Weather extends Component {
                 })}
             </div>
         )
+    }
+
+    toggleDisplay() {
+        if ( this.state.display === false ) {
+            this.setState({ display: true })
+        } else {
+            this.setState({ display: false })
+        }
     }
 
     forecastToPass(key) {
@@ -96,6 +113,7 @@ class Weather extends Component {
         fetch(`http://dataservice.accuweather.com/forecasts/v1/hourly/12hour/${key}?apikey=${this.state.apiKey}&details=true&metric=true`)
         .then( response => response.json() )
         .then( result => {
+            this.weatherIcon(result[0].WeatherIcon)
             var forecastDay1 = [];
             var forecastDay2 = [];
 
@@ -144,35 +162,35 @@ class Weather extends Component {
         var currentWeatherIcon;
 
         if (w === 1 || w === 2 || w === 3) {
-            currentWeatherIcon = <WeatherSun className="icon-big"/>;
+            currentWeatherIcon = <WeatherSun className="icon-big" weather="sun"/>;
         } else if (w === 4 || w === 6) {
-            currentWeatherIcon = <WeatherCloudSun className="icon-big"/>;
+            currentWeatherIcon = <WeatherCloudSun className="icon-big" weather="cloud-sun"/>;
         } else if (w === 5) {
-            currentWeatherIcon = <WeatherSunHaze className="icon-big"/>;
+            currentWeatherIcon = <WeatherSunHaze className="icon-big" weather="sunhaze"/>;
         } else if (w === 7 || w === 8) {
-            currentWeatherIcon = <WeatherCloud className="icon-big"/>;
+            currentWeatherIcon = <WeatherCloud className="icon-big" weather="cloud"/>;
         } else if (w === 11) {
-            currentWeatherIcon = <WeatherFog className="icon-big"/>;
+            currentWeatherIcon = <WeatherFog className="icon-big" weather="fog"/>;
         } else if (w === 12) {
-            currentWeatherIcon = <WeatherCloudLightRain className="icon-big"/>;
+            currentWeatherIcon = <WeatherCloudLightRain className="icon-big" weather="rain"/>;
         } else if (w === 13 || w === 14) {
-            currentWeatherIcon = <WeatherCloudSunRain className="icon-big"/>;
+            currentWeatherIcon = <WeatherCloudSunRain className="icon-big" weather="sun-rain"/>;
         } else if (w === 15) {
-            currentWeatherIcon = <WeatherCloudThunder className="icon-big"/>;
+            currentWeatherIcon = <WeatherCloudThunder className="icon-big" weather="thunder"/>;
         } else if (w === 16 || w === 17) {
-            currentWeatherIcon = <WeatherSunCloudThunder className="icon-big"/>;
+            currentWeatherIcon = <WeatherSunCloudThunder className="icon-big" weather="thunder"/>;
         }  else if (w === 18) {
-            currentWeatherIcon = <WeatherCloudHeavyRain className="icon-big"/>;
+            currentWeatherIcon = <WeatherCloudHeavyRain className="icon-big" weather="rain"/>;
         } else if (w === 19 || w === 20 || w === 21 || w === 23) {
-            currentWeatherIcon = <WeatherSnowClear className="icon-big"/>;
+            currentWeatherIcon = <WeatherSnowClear className="icon-big" weather="snow-clear"/>;
         } else if (w === 22 || w === 24) {
-            currentWeatherIcon = <WeatherSnow className="icon-big"/>;
+            currentWeatherIcon = <WeatherSnow className="icon-big" weather="snow"/>;
         } else if (w === 25 || w === 26 || w === 29) {
-            currentWeatherIcon = <WeatherRainSnow className="icon-big"/>;
+            currentWeatherIcon = <WeatherRainSnow className="icon-big" weather="rain-snow"/>;
         } else if (w === 32) {
-            currentWeatherIcon = <WeatherWind className="icon-big"/>;
+            currentWeatherIcon = <WeatherWind className="icon-big" weather="wind"/>;
         } else {
-            currentWeatherIcon = <WeatherTornado className="icon-big"/>;
+            currentWeatherIcon = <WeatherTornado className="icon-big" weather="tornado"/>;
         }
 
         return currentWeatherIcon;

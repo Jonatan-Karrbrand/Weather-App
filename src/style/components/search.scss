@@ -15,7 +15,7 @@
         transform: translateY(-30px);
         font-size: 0.8rem;
         color: $primary;
-        opacity: 0.6;
+        opacity: 0.7;
     }
 
     input {
@@ -40,7 +40,11 @@
     svg {
         height: 35px;
         cursor: pointer;
-        color: $secondary;
+        color: white;
+
+        &:hover {
+            color: $secondary;
+        }
     }
 
     p {

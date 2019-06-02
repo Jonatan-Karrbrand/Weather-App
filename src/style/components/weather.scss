@@ -4,7 +4,12 @@
         border-radius: 20px;
         padding: 1.6rem;
         margin-bottom: 1.5rem;
-        cursor: pointer;
+        transition: all 0.3s ease-in-out;
+        background-color: rgba(0, 0, 0, 0.4);
+
+        &:hover {
+            transform: scale(1.03);
+        }
     }
 
     .weather-container {
@@ -16,12 +21,37 @@
             margin-bottom: 0;
         }
 
+        .day-icon-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .day-icon-column {
+            width: 25%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            h4 {
+                margin-right: 1rem;
+            }
+        }
+
+        .temperature-column {
+            width: 25%;
+            padding-left: 2.5rem;
+        }
+
+        .weather-column {
+            width: 16.6%;
+        }
+
         .temperature-container {
             display: flex;
             align-items: center;
 
             .temperature-seperator {
-                margin: 0 1rem;
+                margin: 0 10px;
                 font-size: 1.3rem;
                 font-weight: bold;
             }

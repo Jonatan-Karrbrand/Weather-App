@@ -9,8 +9,30 @@
         justify-content: space-around;
         align-items: center;
 
+        h5, h6 {
+            margin-bottom: 0;
+        }
+
+        .hour-icon-column {
+            width: 25%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-right: 5rem;
+        }
+
+        .wind-column {
+            width: 25%;
+            padding-left: 1rem;
+        }
+
+        .forecast-column {
+            width: 25%;
+            padding-left: 2rem;
+        }
+
         &:not(:last-child) {
-            margin-bottom: 1rem;
+            margin-bottom: 18px;
         }
 
         .icon-big {
@@ -42,6 +64,8 @@
     height: 100%;
     top: 0;
     left: 0;
+    cursor: pointer;
+    z-index: 9;
 }
 
 .display-weather {

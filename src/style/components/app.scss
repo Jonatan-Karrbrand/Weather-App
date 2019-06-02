@@ -12,10 +12,15 @@ body {
 }
 
 .app-wrapper {
-    background-image: linear-gradient($bg-color-1, $bg-color-2);
-    // background-color: $bg-color;
+    // background-image: linear-gradient($bg-color-1, $bg-color-2);
+    background-color: black;
     min-height: 100vh;
     height: 100%;
+    background-size: cover !important;
+    position: fixed;
+    background-repeat: no-repeat !important;
+    width: 100%;
+    overflow: scroll;
 }
 
 .component-wrapper {
