@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import '../style/components/app.scss';
+// Components
 import HourlyForecast from './HourlyForecast';
+// Icons
 import { ReactComponent as HighTemp } from '../assets/icons/thermometer-three-quarters-light.svg';
 import { ReactComponent as MinTemp } from '../assets/icons/thermometer-one-quarters-light.svg';
 import { ReactComponent as Wind } from '../assets/icons/wind-light.svg';
@@ -37,11 +39,11 @@ class Weather extends Component {
 
     render() {
         return (
-            <div className="weather-component fade-in">
+            <div className="weather-component fade-in component-wrapper">
                 {  this.state.weather.DailyForecasts.map((weather, key) => {
-                    var currentWeatherIcon = this.weatherIcon(weather.Day.Icon);
+                    let currentWeatherIcon = this.weatherIcon(weather.Day.Icon);
 
-                    var dayToDisplay = this.weatherDay(weather.Date, key);
+                    let dayToDisplay = this.weatherDay(weather.Date, key);
 
                     let day = weather.Date.substring(8,10);
                     let month = weather.Date.substring(5,7);
@@ -107,17 +109,20 @@ class Weather extends Component {
         }
     }
 
+    // 12 Hour forecast
     componentWillMount() {
-        var key = this.props.locationKey;
+        let key = this.props.locationKey;
 
         fetch(`http://dataservice.accuweather.com/forecasts/v1/hourly/12hour/${key}?apikey=${this.state.apiKey}&details=true&metric=true`)
         .then( response => response.json() )
         .then( result => {
             this.weatherIcon(result[0].WeatherIcon)
-            var forecastDay1 = [];
-            var forecastDay2 = [];
 
-            var todaysDate = new Date();
+            // Divides forecast
+            let forecastDay1 = [];
+            let forecastDay2 = [];
+
+            let todaysDate = new Date();
             todaysDate = todaysDate.getUTCDate();
 
             result.forEach(function(element) {
@@ -130,15 +135,15 @@ class Weather extends Component {
                     forecastDay2.push(element)
                 }
             })
-            this.setState({forecastDay1, forecastDay2})
-
+            this.setState({ forecastDay1, forecastDay2 })
         })
     }
 
+    // Day text function
     weatherDay(date, key) {
-        var dayToDisplay;
-        var currentWeatherDate = new Date(date);
-        var weekday = new Array(7);
+        let dayToDisplay;
+        let currentWeatherDate = new Date(date);
+        let weekday = new Array(7);
         weekday[0] = "Söndag";
         weekday[1] = "Måndag";
         weekday[2] = "Tisdag";
@@ -159,7 +164,7 @@ class Weather extends Component {
     }
 
     weatherIcon(w) {
-        var currentWeatherIcon;
+        let currentWeatherIcon;
 
         if (w === 1 || w === 2 || w === 3) {
             currentWeatherIcon = <WeatherSun className="icon-big" weather="sun"/>;

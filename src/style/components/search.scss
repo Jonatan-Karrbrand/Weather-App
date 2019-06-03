@@ -1,53 +1,60 @@
-.search-container {
-    position: relative;
-    display: flex;
-    align-items: flex-end;
-
-    label {
-        position: absolute;
-        color: $primary;
-        pointer-events: none;
-        transition: all 0.3s ease-out;
-        font-size: 1.2rem;
+.component-wrapper {
+    form {
+        max-width: 600px;
+        margin: auto;
     }
 
-    label.hover-label {
-        transform: translateY(-30px);
-        font-size: 0.8rem;
-        color: $primary;
-        opacity: 0.7;
-    }
+    .search-container {
+        position: relative;
+        display: flex;
+        align-items: flex-end;
 
-    input {
-        background: none;
-        border: none;
-        color: $primary;
-        flex-grow: 1;
-        border-bottom: 1px solid $primary;
-        margin-right: 2rem;
-        font-size: 1.2rem;
-    }
-
-    input:focus {
-        outline: none;
-    }
-
-    img {
-        width: 22px;
-        cursor: pointer;
-    }
-
-    svg {
-        height: 35px;
-        cursor: pointer;
-        color: white;
-
-        &:hover {
-            color: $secondary;
+        label {
+            position: absolute;
+            color: $primary;
+            pointer-events: none;
+            transition: all 0.3s ease-out;
+            font-size: 1.2rem;
         }
-    }
 
-    p {
-        color: $primary;
+        label.hover-label {
+            transform: translateY(-30px);
+            font-size: 0.8rem;
+            color: $primary;
+            opacity: 0.7;
+        }
+
+        input {
+            background: none;
+            border: none;
+            color: $primary;
+            flex-grow: 1;
+            border-bottom: 1px solid $primary;
+            margin-right: 2rem;
+            font-size: 1.2rem;
+        }
+
+        input:focus {
+            outline: none;
+        }
+
+        img {
+            width: 22px;
+            cursor: pointer;
+        }
+
+        svg {
+            height: 35px;
+            cursor: pointer;
+            color: white;
+
+            &:hover {
+                color: $secondary;
+            }
+        }
+
+        p {
+            color: $primary;
+        }
     }
 }

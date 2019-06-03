@@ -16,7 +16,7 @@ class DisplayWeather extends Component {
 
     render() {
         return (
-            <div className="locations-weather">
+            <div className="locations-weather component-wrapper pt-3">
                 <p className="number-of-search-results text-right">{ this.numberOfResults() }</p>
                 <div className="wrapper">
                     { this.props.location.map((searchWord, key) => {
@@ -40,6 +40,7 @@ class DisplayWeather extends Component {
         )
     }
 
+    // Result validation
     numberOfResults() {
         if ( this.props.noResult ) {
             return 'Inga sökresultat';
@@ -50,11 +51,12 @@ class DisplayWeather extends Component {
         }
     }
 
+    // 5 Day weather forecast
     getWeather(key) {
         fetch(`http://dataservice.accuweather.com/forecasts/v1/daily/5day/${key}?apikey=${this.state.apiKey}&details=true&metric=true`)
         .then( response => response.json() )
         .then( result => {
-            console.log('locations' , result.DailyForecasts[0].Day.Icon)
+            // This goes up to Search component
             this.props.callbackFromParent(result, key, result.DailyForecasts[0].Day.Icon );
         })
         .catch(function(error) {

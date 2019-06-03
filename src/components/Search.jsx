@@ -26,7 +26,7 @@ class Search extends Component {
         return (
             <div>
                 <div className="component-wrapper">
-                    <form className="max-width-600 mx-auto" onSubmit={ this.search }>
+                    <form onSubmit={ this.search }>
 
                         <div className="search-container">
                             <label htmlFor="searchBar" className={ this.state.hoverLabel && 'hover-label' }>Sök efter stad</label>
@@ -53,8 +53,10 @@ class Search extends Component {
         )
     }
 
+    // Result, location key and weather icon from Locations component
     dataFromLocationsComponent  = ( data , key, icon ) => {
         this.setState({ weather: data , locationKey: key});
+        // This goes to App Component
         this.props.callbackFromApp( icon );
     }
 
@@ -66,6 +68,7 @@ class Search extends Component {
         }
     }
 
+    // Search on cities
     search = e => {
         e.preventDefault();
         this.setState({ location: [] });
@@ -73,18 +76,20 @@ class Search extends Component {
         fetch(`http://dataservice.accuweather.com/locations/v1/cities/search?apikey=${this.state.apiKey}&q=${this.state.searchWord}&details=true`)
         .then( response => response.json() )
         .then( result => {
+            // Check for result
             if ( result.length === 0 ) {
                 this.setState({ noResult: true});
             } else {
                 this.setState({ weather: null , noResult: false})
                 let array = [];
                 result.forEach( element => {
+                    // Check if only cities in sweden or not
                     if ( this.state.swedenOnly ) {
                         if ( element.Country.EnglishName === 'Sweden') {
                             array.push(element)
                             this.setState({ location: array});
                         }
-                    } else {
+                    } else {                    
                         array.push(element)
                         this.setState({ location: array});
                     }

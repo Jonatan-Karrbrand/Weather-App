@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import '../style/components/app.scss';
-
+// Icons
 import { ReactComponent as MinTemp } from '../assets/icons/thermometer-one-quarters-light.svg';
 import { ReactComponent as Wind } from '../assets/icons/wind-light.svg';
 import { ReactComponent as Raindrops } from '../assets/icons/raindrops-light.svg';
@@ -84,6 +84,7 @@ class HourlyForecast extends Component {
         }
     }
 
+    // Weather icons
     weatherIcon(w) {
         var currentWeatherIcon;
 

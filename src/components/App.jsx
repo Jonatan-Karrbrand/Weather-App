@@ -5,6 +5,7 @@ import '../style/components/app.scss';
 import Header from './Header';
 import Search from './Search';
 
+// Background images
 import cloud from '../assets/images/cloud2.jpg';
 import fog from '../assets/images/fog3.jpg';
 import rainLight from '../assets/images/rain.jpg';
@@ -25,13 +26,12 @@ class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            background: false,
-            addAnimation: false
+            background: false
         }
     }
 
     render() {
-
+        // Background render check
         if (this.state.background) {
             var background = {
                 background: `linear-gradient(to right bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.2)), url(${ this.state.background })`,
@@ -39,13 +39,14 @@ class App extends Component {
             };
         } else {
             background = {
-                background: `linear-gradient(to right bottom, #101033, #150226)`,
+                background: `linear-gradient(to bottom, #101033, rgb(13, 0, 21))`,
                 backgroundColor: 'black',
             };
         }
+
         return (
             <React.Fragment>
-                <div className={"app-wrapper " + ( this.state.addAnimation && 'fade-in' )} style={ background }>
+                <div className="app-wrapper" style={ background }>
                     <div className="app-overlay"></div>
                     <div className="container">
                         <Header></Header>
@@ -56,9 +57,9 @@ class App extends Component {
         )
     }
 
+    // Background images, from search component
     dataFromSearchComponent = ( w ) => {
         var currentWeatherIcon;
-        this.setState({ addAnimation: false })
 
         if (w === 1 || w === 2 || w === 3) {
             currentWeatherIcon = sun;
@@ -92,7 +93,7 @@ class App extends Component {
             currentWeatherIcon = tornado;
         }
 
-        this.setState({ background: currentWeatherIcon, addAnimation: true })
+        this.setState({ background: currentWeatherIcon })
     }
 
 }
