@@ -73,7 +73,7 @@ class Search extends Component {
         e.preventDefault();
         this.setState({ location: [] });
 
-        fetch(`http://dataservice.accuweather.com/locations/v1/cities/search?apikey=${this.state.apiKey}&q=${this.state.searchWord}&details=true`)
+        fetch(`https://dataservice.accuweather.com/locations/v1/cities/search?apikey=${this.state.apiKey}&q=${this.state.searchWord}&details=true`)
         .then( response => response.json() )
         .then( result => {
             // Check for result
@@ -89,7 +89,7 @@ class Search extends Component {
                             array.push(element)
                             this.setState({ location: array});
                         }
-                    } else {                    
+                    } else {
                         array.push(element)
                         this.setState({ location: array});
                     }

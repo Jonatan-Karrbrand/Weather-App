@@ -113,7 +113,7 @@ class Weather extends Component {
     componentWillMount() {
         let key = this.props.locationKey;
 
-        fetch(`http://dataservice.accuweather.com/forecasts/v1/hourly/12hour/${key}?apikey=${this.state.apiKey}&details=true&metric=true`)
+        fetch(`https://dataservice.accuweather.com/forecasts/v1/hourly/12hour/${key}?apikey=${this.state.apiKey}&details=true&metric=true`)
         .then( response => response.json() )
         .then( result => {
             this.weatherIcon(result[0].WeatherIcon)

@@ -53,7 +53,7 @@ class DisplayWeather extends Component {
 
     // 5 Day weather forecast
     getWeather(key) {
-        fetch(`http://dataservice.accuweather.com/forecasts/v1/daily/5day/${key}?apikey=${this.state.apiKey}&details=true&metric=true`)
+        fetch(`https://dataservice.accuweather.com/forecasts/v1/daily/5day/${key}?apikey=${this.state.apiKey}&details=true&metric=true`)
         .then( response => response.json() )
         .then( result => {
             // This goes up to Search component
